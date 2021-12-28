@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    float walkSpeed, maxWalkSpeed, runSpeed, maxRunSpeed, hInput, baseJumpHeight, jumpStrength, jumpStrengthMultiplier, maxJumpStrength;
+    float walkSpeed, maxWalkSpeed, runSpeed, maxRunSpeed, hInput, baseJumpHeight, jumpStrength, jumpStrengthMultiplier, maxJumpStrength, gravityScale;
 
     bool isRunning, isGrounded;
 
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         isGrounded = groundCheck.GetComponent<GroundCheck>().onGround;
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - gravityScale);
     }
 
     //move player in direction pressed, if the run key is pressed, move by run speed
