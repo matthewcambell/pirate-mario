@@ -900,7 +900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  walkSpeed: 0.45
-  maxWalkSpeed: 3
+  walkSpeed: 1
+  maxWalkSpeed: 4
   runSpeed: 1
   maxRunSpeed: 6
+  hInput: 0
