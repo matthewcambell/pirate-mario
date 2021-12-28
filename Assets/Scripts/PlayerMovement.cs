@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    float walkSpeed, maxWalkSpeed, runSpeed, maxRunSpeed, hInput;
+    float walkSpeed, maxWalkSpeed, runSpeed, maxRunSpeed, hInput, baseJumpHeight, jumpStrength, jumpStrengthMultiplier, maxJumpStrength;
 
-    bool isRunning;
+    bool isRunning, isGrounded;
+
+    public GameObject groundCheck;
 
     void Start()
     {
@@ -21,12 +23,13 @@ public class PlayerMovement : MonoBehaviour
     {
         hInput = Input.GetAxis("Horizontal");
         isRunning = Input.GetButton("Sprint");
+        Jump();
     }
 
     void FixedUpdate()
     {
         Move();
-        Jump();
+        isGrounded = groundCheck.GetComponent<GroundCheck>().onGround;
     }
 
     //move player in direction pressed, if the run key is pressed, move by run speed
@@ -34,15 +37,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isRunning)
         {
-            run();
+            Run();
         }
         else
         {
-            walk();
+            Walk();
         }
     }
 
-    void walk()
+    void Walk()
     {
         if (hInput > 0 && Mathf.Abs(rb.velocity.x) <= maxWalkSpeed)
         {
@@ -62,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void run()
+    void Run()
     {
         if (hInput > 0 && Mathf.Abs(rb.velocity.x) <= maxRunSpeed)
         {
@@ -85,6 +88,19 @@ public class PlayerMovement : MonoBehaviour
     //if player is on ground and presses the jump key, jump
     void Jump()
     {
-        //jump script
+        if(isGrounded && Input.GetButton("Jump"))
+        {
+            jumpStrength += jumpStrengthMultiplier * Time.deltaTime;
+            if(jumpStrength > maxJumpStrength)
+            {
+                jumpStrength = maxJumpStrength;
+            }
+        }
+        if(isGrounded && Input.GetButtonUp("Jump"))
+        {
+            Debug.Log("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, jumpStrength + baseJumpHeight);
+            jumpStrength = 0;
+        }
     }
 }

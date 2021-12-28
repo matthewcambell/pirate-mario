@@ -132,8 +132,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 75181426}
-  - component: {fileID: 75181427}
   - component: {fileID: 75181428}
+  - component: {fileID: 75181427}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004162729, y: -0.8384719}
+  m_Offset: {x: 0.0004093647, y: -0.4575207}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,7 +179,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9221561, y: 0.30073857}
+  m_Size: {x: 0.98560643, y: 0.0829466}
   m_EdgeRadius: 0
 --- !u!114 &75181428
 MonoBehaviour:
@@ -380,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1618572117}
@@ -807,18 +807,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.01219064}
+  m_Offset: {x: 0, y: 0.0036702156}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.9756187}
+  m_Size: {x: 1, y: 0.99265957}
   m_EdgeRadius: 0
 --- !u!212 &1618572116
 SpriteRenderer:
@@ -860,7 +860,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 0.16509432, b: 0.17420754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -880,7 +880,7 @@ Transform:
   m_GameObject: {fileID: 1618572113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.46, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 75181426}
   - {fileID: 519420032}
@@ -905,3 +905,8 @@ MonoBehaviour:
   runSpeed: 1
   maxRunSpeed: 6
   hInput: 0
+  baseJumpHeight: 6
+  jumpStrength: 0
+  jumpStrengthMultiplier: 12
+  maxJumpStrength: 6
+  groundCheck: {fileID: 75181425}
