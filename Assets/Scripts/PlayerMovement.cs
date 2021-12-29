@@ -16,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject groundCheck;
 
+    public Animator anim;
+
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         canMove = true;
+        anim = this.GetComponent<Animator>();
     }
 
     void Update()
@@ -27,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         hInput = Input.GetAxis("Horizontal");
         isRunning = Input.GetButton("Sprint");
         Jump();
+        AnimChecks();
+        Flip();
     }
 
     void FixedUpdate()
@@ -108,6 +113,46 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength + baseJumpHeight);
             jumpStrength = 0;
+        }
+    }
+    //flips player sprite
+    void Flip()
+    {
+        if(rb.velocity.x > 0)
+        {
+            this.transform.localScale = new Vector3(2f, 2f, 1f);
+        }
+        if (rb.velocity.x < 0)
+        {
+            this.transform.localScale = new Vector3(-2f, 2f, 1f);
+        }
+    }
+    //updates animator values
+    void AnimChecks()
+    {
+        if (groundCheck.GetComponent<GroundCheck>().onGround)
+        {
+            anim.SetBool("inAir", false);
+        }
+        else
+        {
+            anim.SetBool("inAir", true);
+        }
+        if (Input.GetButton("Sprint"))
+        {
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
+        }
+        if (hInput != 0 && !Input.GetButton("Sprint"))
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
         }
     }
 }
