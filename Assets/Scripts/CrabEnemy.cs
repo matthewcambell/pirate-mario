@@ -8,17 +8,25 @@ public class CrabEnemy : MonoBehaviour
 
     public GameObject player;
 
+    public Animator anim;
+
+    public bool canMove = true;
+
     [SerializeField]
     float speed, playerBounceHeight;
 
     void Start()
     {
         rbc = this.GetComponent<Rigidbody2D>();
+        anim = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        rbc.velocity = new Vector2(speed, rbc.velocity.y);
+        if (canMove)
+        {
+            rbc.velocity = new Vector2(speed, rbc.velocity.y);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +34,7 @@ public class CrabEnemy : MonoBehaviour
         speed *= -1;
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerDamageDetection>().crabHit(this.gameObject);
+            player.GetComponent<PlayerDamageDetection>().CrabHit(this.gameObject);
         }
     }
 
@@ -34,7 +42,13 @@ public class CrabEnemy : MonoBehaviour
     {
         //Kills Crab
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(player.GetComponent<Rigidbody2D>().velocity.x, playerBounceHeight);
+        anim.Play("DeadCrab");
+        canMove = false;
+        StartCoroutine(KillTimer());
+    }
+    IEnumerator KillTimer()
+    {
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
-
     }
 }

@@ -12,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
 
     bool isRunning, isGrounded;
 
+    public bool canMove;
+
     public GameObject groundCheck;
 
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
+        canMove = true;
     }
 
     void Update()
@@ -28,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
+        if (canMove)
+        {
+            Move();
+        }
         isGrounded = groundCheck.GetComponent<GroundCheck>().onGround;
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - gravityScale);
     }

@@ -11,23 +11,38 @@ public class PlayerDamageDetection : MonoBehaviour
 
     GameObject player;
 
+    bool canGetHit = true;
+
     private void Start()
     {
         player = this.gameObject;
     }
-    public void crabHit(GameObject crab)
+    public void CrabHit(GameObject crab)
     {
-        if(player.transform.position.x < crab.transform.position.x)
+        if (canGetHit)
         {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(hitPowerX, hitPowerY);
+            canGetHit = false;
+            health -= 1;
+            if (player.transform.position.x < crab.transform.position.x)
+            {
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(hitPowerX, hitPowerY);
+            }
+            else if (player.transform.position.x > crab.transform.position.x)
+            {
+                player.GetComponent<Rigidbody2D>().velocity = new Vector2(-hitPowerX, hitPowerY);
+            }
+            if (health <= 0)
+            {
+                Debug.Log("OOF");
+            }
+            player.GetComponent<PlayerMovement>().canMove = false;
+            StartCoroutine(HitTimer());
         }
-        if (player.transform.position.x > crab.transform.position.x)
-        {
-            player.GetComponent<Rigidbody2D>().velocity = new Vector2(-hitPowerX, hitPowerY);
-        }
-        if(health <= 0)
-        {
-            Debug.Log("OOF");
-        }
+    }
+    IEnumerator HitTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        player.GetComponent<PlayerMovement>().canMove = true;
+        canGetHit = true;
     }
 }
