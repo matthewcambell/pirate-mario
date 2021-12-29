@@ -110,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if(isGrounded && Input.GetButtonUp("Jump"))
         {
-            Debug.Log("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength + baseJumpHeight);
             jumpStrength = 0;
         }
@@ -154,5 +153,10 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("Walking", false);
         }
+    }
+    public void Upgrade(bool upgrade)
+    {
+        if (upgrade) anim.SetBool("PoweredUp", true);
+        else if (!upgrade) anim.SetBool("PoweredUp", false);
     }
 }

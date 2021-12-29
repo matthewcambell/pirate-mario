@@ -9,7 +9,7 @@ public class GroundCheck : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //checks if on ground
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("PowerUpBox"))
         {
             onGround = true;
         }
@@ -17,7 +17,7 @@ public class GroundCheck : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //checks if on ground
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("PowerUpBox"))
         {
             onGround = false;
         }

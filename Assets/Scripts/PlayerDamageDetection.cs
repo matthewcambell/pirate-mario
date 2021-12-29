@@ -35,9 +35,16 @@ public class PlayerDamageDetection : MonoBehaviour
             {
                 Debug.Log("OOF");
             }
+            else if(health == 1) player.GetComponent<PlayerMovement>().Upgrade(false);
+
             player.GetComponent<PlayerMovement>().canMove = false;
             StartCoroutine(HitTimer());
         }
+    }
+    public void PowerUp()
+    {
+        health = 2;
+        player.GetComponent<PlayerMovement>().Upgrade(true);
     }
     IEnumerator HitTimer()
     {
