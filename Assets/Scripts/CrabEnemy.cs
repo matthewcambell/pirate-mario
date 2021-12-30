@@ -19,6 +19,7 @@ public class CrabEnemy : MonoBehaviour
     {
         rbc = this.GetComponent<Rigidbody2D>();
         anim = this.GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
     private void FixedUpdate()

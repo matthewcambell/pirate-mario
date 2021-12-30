@@ -14,6 +14,7 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         rbp = this.GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
     }
 
     private void FixedUpdate()

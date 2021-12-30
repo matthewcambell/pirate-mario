@@ -15,9 +15,9 @@ public class PowerUpBox : MonoBehaviour
     private void Start()
     {
         anim = this.GetComponent<Animator>();
-        spawnPoint = this.transform;
-        spawnPoint.transform.localPosition = new Vector3(spawnPoint.position.x, spawnPoint.position.y + 0.8f);
     }
+
+    //spawns power up once when the player hits under the block
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
@@ -25,7 +25,7 @@ public class PowerUpBox : MonoBehaviour
             anim.SetBool("Used", true);
             if (canBeUsed)
             {
-                Instantiate(powerUpItem, spawnPoint);
+                Instantiate(powerUpItem, spawnPoint.position, spawnPoint.rotation);
                 canBeUsed = false;
             }
         }
