@@ -125,6 +125,10 @@ public class PlayerMovement : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-2f, 2f, 1f);
         }
+        if(rb.velocity.x == 0)
+        {
+            this.transform.localScale = new Vector3(2f, 2f, 1f);
+        }
     }
     //updates animator values
     void AnimChecks()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDamageDetection : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerDamageDetection : MonoBehaviour
             }
             if (health <= 0)
             {
-                Debug.Log("OOF");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else if(health == 1) player.GetComponent<PlayerMovement>().Upgrade(false);
 
