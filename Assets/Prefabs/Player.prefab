@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8501334489666032306}
   m_Layer: 0
   m_Name: GroundCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   runSpeed: 1
   maxRunSpeed: 7
   hInput: 0
-  baseJumpHeight: 8
+  baseJumpHeight: 8.5
   jumpStrength: 0
   jumpStrengthMultiplier: 16
   maxJumpStrength: 8
