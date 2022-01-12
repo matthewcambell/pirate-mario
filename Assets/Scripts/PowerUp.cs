@@ -31,4 +31,12 @@ public class PowerUp : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerDamageDetection>().PowerUp();
+            Destroy(this.gameObject);
+        }
+    }
 }

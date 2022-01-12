@@ -10,7 +10,7 @@ public class Cannon : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Instantiate(ball, this.gameObject.transform.position + new Vector3(-1.4f, 0f, 0f), this.gameObject.transform.rotation);
+            Instantiate(ball, this.gameObject.transform.position + new Vector3(-1.5f, 0f, 0f), this.gameObject.transform.rotation);
         }
     }
 }
